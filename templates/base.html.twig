@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bucket-list !{% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/LogosPersoblackredgreen.png') }}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('style.css') }}">
-    <link rel="icon" href="img/LogosPersoblackredgreen.png">
-    <meta charset="UTF-8">
-    <title>{% block title %}WorldWide Bucket-List{% endblock %}</title>
 </head>
 <body>
-<header>
-    {% include 'bodyStructure/header/header.html.twig' %}
-</header>
+{% include 'bodyStructure/header/header.html.twig' %}
 <main>
+    {# lis les messages flash stockés #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     {% block body %}{% endblock %}
 </main>
-<footer>
-    {% include 'bodyStructure/footer/footer.html.twig' %}
-</footer>
+{% include 'bodyStructure/footer/footer.html.twig' %}
 </body>
 </html>

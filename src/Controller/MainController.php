@@ -9,14 +9,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'main_home')]
-    public function index(): Response
+    #[Route('/home', name: 'main_home_2')]
+    public function home(): Response
     {
-        return $this->render('bodyStructure/main/home.html.twig');
+        return $this->render('main/home.html.twig');
     }
 
-    #[Route('/about-us', name: 'about-us')]
+    #[Route('/about-us', name: 'main_about_us')]
     public function aboutUs(): Response
     {
-        return  $this->render('page/aboutUs.html.twig');
+        return $this->render('main/about_us.html.twig');
     }
 }
