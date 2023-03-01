@@ -1,9 +1,10 @@
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: chartreuse;
+    background-color: #03191E;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color :#FF0800;
 }
 
 main{
@@ -12,7 +13,7 @@ main{
 
 a{
     text-decoration: none;
-    color: black;
+    color: #FF0800;
 }
 
 img{
@@ -26,8 +27,9 @@ nav ul {
 }
 
 nav a:hover{
-    color: cornflowerblue;
-    box-shadow: 10px 5px 5px cornflowerblue;;
+    color: #138808;
+
+    box-shadow: 10px 5px 5px #5B85AA;
 }
 
 li{

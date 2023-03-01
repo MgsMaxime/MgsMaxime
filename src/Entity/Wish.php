@@ -45,6 +45,11 @@ class Wish
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCreated = null;
 
+    //fetch eager permet de forcer le chargement des éléments
+    #[ORM\ManyToOne(inversedBy: 'wishes'/*, fetch: 'EAGER'*/)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +96,13 @@ class Wish
         return $this->isPublished;
     }
 
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
     public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
@@ -102,18 +114,21 @@ class Wish
 
         return $this;
     }
-
     #[ORM\PrePersist]
-    public function setNewWish()
-    {
+    public function setNewWish(){
 
         $this->setDateCreated(new \DateTime());
         $this->setIsPublished(true);
     }
 
-    public function setIsPublished(bool $isPublished): self
+    public function getCategory(): ?Category
     {
-        $this->isPublished = $isPublished;
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

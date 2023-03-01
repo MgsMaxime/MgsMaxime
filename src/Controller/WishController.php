@@ -25,8 +25,8 @@ class WishController extends AbstractController
 //            ->setDescription("1234564987dfs");
 //        $wishRepository->save($wish, true);
         //TODO récupérer la liste des wish et la renvoyer
-        $wishes = $wishRepository->findBy(["isPublished" => true], ["dateCreated" => 'DESC']);
-
+        //$wishes = $wishRepository->findBy(["isPublished" => true], ["dateCreated" => 'DESC']);
+        $wishes = $wishRepository->findPublishWishes();
         dump($wishes);
 
         return $this->render('/wish/list.html.twig', [
@@ -39,7 +39,7 @@ class WishController extends AbstractController
     {
         $wish = $wishRepository->find($id);
 
-        if (!$wish) {
+        if(!$wish){
             throw $this->createNotFoundException("Oops ! Wish not found !");
         }
 
@@ -56,7 +56,7 @@ class WishController extends AbstractController
 
         $wishForm->handleRequest($request);
 
-        if ($wishForm->isSubmitted() && $wishForm->isValid()) {
+        if($wishForm->isSubmitted() && $wishForm->isValid()){
 
 //            $wish->setDateCreated(new \DateTime());
 //            $wish->setIsPublished(true);
@@ -71,6 +71,20 @@ class WishController extends AbstractController
             "wishForm" => $wishForm->createView()
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
